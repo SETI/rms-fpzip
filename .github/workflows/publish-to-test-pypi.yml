@@ -46,6 +46,7 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
+          name: artifact-${{ matrix.os }}
           path: ./wheelhouse/*.whl
 
   upload_pypi:
@@ -53,10 +54,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: artifact   # prevents extra directory
           path: dist
+          pattern: artifact-*
+          merge-multiple: true
 
       - name: Publish to Test PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
