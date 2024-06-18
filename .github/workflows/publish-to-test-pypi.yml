@@ -39,10 +39,6 @@ jobs:
         env:
           CIBW_ARCHS_LINUX: ${{matrix.arch}}
 
-      - shell: bash
-        run: |
-          ls -l ./wheelhouse/*.whl
-
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
