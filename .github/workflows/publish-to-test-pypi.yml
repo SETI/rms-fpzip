@@ -16,11 +16,9 @@ jobs:
       matrix:
         include:
           - os: ubuntu-latest
-            arch: auto  # x86_64 i686
-          - os: ubuntu-latest
-            arch: aarch64
+            arch: 'x86_64 i686 aarch64'
           - os: windows-latest
-            arch: auto  # AMD64 x86
+            arch: 'AMD64 x86'
           - os: macos-latest
             arch: 'x86_64 arm64'
 
@@ -31,7 +29,7 @@ jobs:
           fetch-depth: 0
 
       - name: Set up QEMU
-        if:  ${{ matrix.arch == 'aarch64' }}
+        if:  ${{ matrix.os == 'ubuntu-latest' }}
         uses: docker/setup-qemu-action@v3
 
       - name: Build wheels
