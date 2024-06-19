@@ -14,11 +14,15 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
-        arch: [auto]
         include:
-          - os: ubuntu-20.04
+          - os: ubuntu-latest
+            arch: auto  # x86_64 i686
+          - os: ubuntu-latest
             arch: aarch64
+          - os: windows-latest
+            arch: auto  # AMD64 x86
+          - os: macos-latest
+            arch: 'x86_64 arm64'
 
     steps:
       - name: Checkout
@@ -36,9 +40,7 @@ jobs:
         env:
           CIBW_PROJECT_REQUIRES_PYTHON: '>=3.9'
           CIBW_SKIP: 'pp* *musllinux* *cp27mu*'
-          CIBW_ARCHS: 'auto64'
-          CIBW_ARCHS_LINUX: ${{ matrix.arch }}
-          CIBW_ARCHS_MACOS: 'x86_64 arm64'
+          CIBW_ARCHS: ${{ matrix.arch }}
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
