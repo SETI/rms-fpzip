@@ -33,7 +33,7 @@ jobs:
         uses: docker/setup-qemu-action@v3
 
       - name: Build wheels
-        uses: pypa/cibuildwheel@v2
+        uses: pypa/cibuildwheel@v2.22.0
         env:
           CIBW_PROJECT_REQUIRES_PYTHON: '>=3.9'
           CIBW_SKIP: 'pp* *musllinux* *cp27mu*'
