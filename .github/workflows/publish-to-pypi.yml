@@ -33,7 +33,7 @@ jobs:
         uses: pypa/cibuildwheel@v3.4.1
         env:
           CIBW_PROJECT_REQUIRES_PYTHON: '>=3.9'
-          CIBW_SKIP: 'pp* *musllinux* *cp27mu*'
+          CIBW_SKIP: '*musllinux* cp314t*'
           CIBW_ARCHS: ${{ matrix.arch }}
 
       - name: Upload artifacts
