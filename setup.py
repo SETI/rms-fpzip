@@ -38,7 +38,7 @@ if prerelease_version == "release":
 
 setuptools.setup(
     setup_requires=['numpy'],
-    python_requires=">=3.9",
+    python_requires=">=3.11",
     ext_modules=[
       setuptools.Extension(
         'fpzip',
