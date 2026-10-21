@@ -12,7 +12,9 @@ jobs:
     strategy:
       matrix:
         include:
-          - os: ubuntu-latest
+          # Pinned until the ubuntu-latest (26.04) runners' Docker lets 32-bit
+          # containers use the network: actions/runner-images#14790.
+          - os: ubuntu-24.04
             arch: 'x86_64 i686 aarch64'
           - os: windows-latest
             arch: 'AMD64 x86'
@@ -26,7 +28,7 @@ jobs:
           fetch-depth: 0
 
       - name: Set up QEMU
-        if:  ${{ matrix.os == 'ubuntu-latest' }}
+        if:  ${{ matrix.os == 'ubuntu-24.04' }}
         uses: docker/setup-qemu-action@v4
 
       - name: Build wheels
